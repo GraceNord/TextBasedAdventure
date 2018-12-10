@@ -55,8 +55,8 @@ def cellD():
 
 
 def startGame():
-    print('Welcome to the mysterious mansion')
+    print('Welcome to Prison Break')
     raw_input('Press enter to start the game. ')
-    room1()
+    yourCell()
     
     

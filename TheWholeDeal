@@ -13,6 +13,40 @@ def cellB():
         print('This room looks vaguely familiar')
     if 'room2' not in enteredRooms:
         enteredRooms += ['room2']
+def cellC():
+	x=0
+	gold = 0
+    global enteredRooms
+    print('You entered cellC')
+    if 'cellC' in enteredRooms:
+        print('This cell looks vaguely familiar')
+    if 'cellC' not in enteredRooms:
+            enteredRooms += ['cellC']
+	survey = input('What do you want to do?:')
+	while x=0:
+		if survey in ['survey','search','look']:
+			search = input('You found a loose brick. What do you want to do?:')
+			if search in ['remove','break'] an if 'bar' in playerItems:
+				found = input('You found a golden tooth. Do you want to leave the cell or hide?:')
+				playerItems += ['gold']
+				if found == 'leave':
+					x+=1
+				elif found == 'hide':
+					print('The guard has found you.')
+					lose()
+				else:
+					print ('The value', found , 'is not recognized')
+			elif survey in ['exit','leave']:
+				x+=1
+			else:
+				print ('The value', search , 'is not recognized')
+		elif survey in ['exit','leave']:
+			x+=1
+		else:
+			print ('The value', survey , 'is not recognized')
+	if x=1:
+		hallB()
+		
 
 def hallwayA():
 	print("This is a hallway, illuminated with dim lights. This is a pretty long hallway, with a lot of cobwebs. Suddenly a spider drops down in front of your legs.")

@@ -3,6 +3,8 @@ import random
 
 playerItems = []
 enteredRooms = []
+openedDoors = []
+likability = False
 
 def cellB():
     global enteredRooms
@@ -50,6 +52,72 @@ def yourCell():
         
         
 def cellD():
+    global playerItems
+    global enteredRooms
+    global openedDoors
+    global likability
+    exitRoom = False
+    cellItems = []
+    
+    if not("cD" in enteredRooms):
+        enteredRooms += ["cD"]
+        print("This cell is dark just like the rest of them. Before you stands to tall figure.")
+        print("One to your left, the other to your right.")
+        print("The one to your right barks, 'Hey what are you doing in here?'")
+        print("How do you respond.")
+        print(You are hiding from the guard or you are trying to escape the prison?")
+        response = raw_input("Hide or Escape: ")
+        while response != "Hide" and response != "Escape":
+            response = raw_input("Invalid Option, Hide or Escape: ")
+        if response == "Hide:
+            likability = True
+            print('The one to your left says, "We can sympathize with that. That guard has been a pain to everyone around here."')
+        else:
+            print('The one on your right scoffs, "Ha. Your trying to escape this prison, fat chance."')
+            print('The one on your left chimes in, "Well, he has made it this far. Who is to say he cannot."')
+            print('The one on your right says, "Maybe your right. Maybe he can do it. But will he take us with him?"')
+            print('Will you try to free these prisoners?')
+            response = raw_input('Yes or No: ')
+            while response != "Yes" and response != "No":
+                response = raw_input("Invalid Option, Yes or No: ")
+            if response == "Yes":
+                likability = True
+                print('The one on your right shouts, "Alright, nice. Hey, any information you need, we both got it."')
+            else:
+                print('The one on your right menacingly says, "Wrong answer bub. You'll have to make it up to us now."')
+                print('The one on your left says, "Why not leave that little pillow case we see you dragging around."')
+                playerItems.remove("pillowcase")
+                cellItems += ["pillowcase"]
+                print("You don't think you can take a two on one fight. You drop your pillow case in the room.")
+                print("Without it, you can only carry two items.")
+                
+    else:
+       print("This is the cell with the two mysterious figures in it. It hasn't changed much since you left.")
+       if likability == True
+           print('The prisoner on your right says, "Hey it's good to see you again."')
+           print('The prisoner on your left says, "What do you need?"')
+       else:
+           print('The prisoner on your right says, "You got a lotta nerve comming back here."')
+           print('The prisoner on your left nods in agreement')
+           
+   if len(playerItems) > 2:
+       if not("pillowcase" in playerItems):
+           while len(playerItems) > 2:
+               print("You currently cannot hold more than two items. Which one will you drop")
+               for item in playerItems:
+                   print(item)
+               item = raw_input()
+               while not(item in playerItems):
+                   item = raw_input("Invalid object, try another: ")
+               playerItems.remove(item)
+               cellItems += [item]
+               
+   
+                   
+                   
+       
+                
+            
   
   
 

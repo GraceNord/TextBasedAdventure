@@ -15,8 +15,9 @@ def cellB():
         enteredRooms += ['room2']
 
 def hallwayA():
+	print("This is a hallway, illuminated with dim lights. This is a pretty long hallway, with a lot of cobwebs. Suddenly a spider drops down in front of your legs.")
+	spiderAction = ("What do you want to do?\n")
     
-        
 def cellC():
     global enteredRooms
     print('You entered Room 3')

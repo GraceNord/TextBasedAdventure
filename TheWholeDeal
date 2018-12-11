@@ -206,6 +206,7 @@ def cellD():
                    item = raw_input("Invalid object, try another: ")
                playerItems.remove(item)
                cellItems += [item]
+	       print("You dropped" + item)
 	 
     while exitRoom == False:
     	action = raw_input("What do you want to do?  ")
@@ -235,7 +236,7 @@ def cellD():
 				       while not(item in playerItems):
 					   item = raw_input("Invalid object, try another: ")
 				       playerItems.remove(item)
-				       cellItems += [item]
+				       cellItems += [iteem]
 	elif action in ['drop', 'put down']:
 		
 	elif action in ['give', 'gift']:

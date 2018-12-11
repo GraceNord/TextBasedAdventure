@@ -225,20 +225,43 @@ def cellD():
 			item = raw_input("Take what? ")
 			while not(item in cellItems):
 				item = raw_input("Invalid object, try another: ")
-			playerItems += [item]
-			if len(playerItems) > 2:
-			       if not("pillowcase" in playerItems):
-				   while len(playerItems) > 2:
-				       print("You currently cannot hold more than two items. Which one will you drop")
-				       for item in playerItems:
-					   print(item)
-				       item = raw_input()
-				       while not(item in playerItems):
-					   item = raw_input("Invalid object, try another: ")
-				       playerItems.remove(item)
-				       cellItems += [iteem]
+			if item != 'pillowcase':
+				playerItems += [item]
+				print("You added " + item + " to your inventory")
+				if len(playerItems) > 2:
+				       if not("pillowcase" in playerItems):
+					   while len(playerItems) > 2:
+					       print("You currently cannot hold more than two items. Which one will you drop")
+					       for item in playerItems:
+						   print(item)
+					       item = raw_input()
+					       while not(item in playerItems):
+						   item = raw_input("Invalid object, try another: ")
+					       playerItems.remove(item)
+					       cellItems += [item]
+					       print("You dropped " + item)
+		       else:
+			        if likability == False:
+					print('The prisoner on your right growls at you.')
+					print('You may want to reconsider taking that.')
+				else:
+					playerItems += [item]
+					print("You added " + item + " to your inventory")
+				
 	elif action in ['drop', 'put down']:
-		
+		if len(playerItems) > 0:
+			print("Which item will you drop")
+			for item in playerItems:
+				print(item)
+			item = raw_input()
+			while not(item in playerItems):
+				item = raw_input("Invalid object, try another: ")
+			playerItems.remove(item)
+			cellItems += [item]
+			print("You dropped " + item)
+		else:
+			print("You have nothing on you to drop.")
+	   
 	elif action in ['give', 'gift']:
 	elif action in ['talk', 'chat']:
 	elif action in ['leave', 'exit']:

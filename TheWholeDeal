@@ -172,6 +172,43 @@ def cellD():
                    item = raw_input("Invalid object, try another: ")
                playerItems.remove(item)
                cellItems += [item]
+	 
+    while exitRoom == False:
+    	action = raw_input("What do you want to do?  ")
+	if action in ['survey', 'look', 'search']:
+		if len(cellItems) == 0:
+			print("You look around the cell and find it is still dark. It also does not contain anything of note.")
+		else:
+			print("You look around the cell and find it is still dark. There are some things on the floor you might")
+			print("be able to take.")
+	elif action in ['take', 'pick up']:
+		if len(cellItems) == 0:
+			print("There are no items to pick up.")
+		else:
+			for item in cellItems:
+				print(item)
+			item = raw_input("Take what? ")
+			while not(item in cellItems):
+				item = raw_input("Invalid object, try another: ")
+			playerItems += [item]
+			if len(playerItems) > 2:
+			       if not("pillowcase" in playerItems):
+				   while len(playerItems) > 2:
+				       print("You currently cannot hold more than two items. Which one will you drop")
+				       for item in playerItems:
+					   print(item)
+				       item = raw_input()
+				       while not(item in playerItems):
+					   item = raw_input("Invalid object, try another: ")
+				       playerItems.remove(item)
+				       cellItems += [item]
+	elif action in ['drop', 'put down']:
+		
+	elif action in ['give', 'gift']:
+	elif action in ['talk', 'chat']:
+	elif action in ['leave', 'exit']:
+	else:
+   	
                
 def startGame():
     print('Welcome to Prison Break')

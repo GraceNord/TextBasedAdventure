@@ -15,7 +15,6 @@ def cellB():
         enteredRooms += ['room2']
 def cellC():
 	x=0
-	gold = 0
     global enteredRooms
     print('You entered cellC')
     if 'cellC' in enteredRooms:
@@ -23,7 +22,7 @@ def cellC():
     if 'cellC' not in enteredRooms:
             enteredRooms += ['cellC']
 	survey = input('What do you want to do?:')
-	while x=0:
+	while x==0:
 		if survey in ['survey','search','look']:
 			search = input('You found a loose brick. What do you want to do?:')
 			if search in ['remove','break'] an if 'bar' in playerItems:
@@ -45,20 +44,54 @@ def cellC():
 		else:
 			print ('The value', survey , 'is not recognized')
 	if x=1:
+		print('You have now exited cellC and entered hallB')
 		hallB()
+		
+def cellA():
+	y=0
+    global enteredRooms
+    print('You entered cellA')
+    if 'cellA' in enteredRooms:
+        print('This cell looks vaguely familiar')
+    if 'cellA' not in enteredRooms:
+            enteredRooms += ['cellA']  
+	while y==0:
+		speak = input('A prisoner in cellA approaches you. Do you want to speak with him or leave?:')
+		if speak == 'speak':
+			rope = input('He offers you a rope if and only if you guess his secret number between one and a million. Do you want to guess or exit?:')
+			if rope == 'guess':
+				guess = input('What is your guess?:')
+				if guess in ['z','Z']:
+					print('You guessed my number. Ha Ha Ha! Here is your rope!)
+					playerItems += [rope]
+					guard = input('A guard is nearby. Do you want to run, hide, or walk?:')
+					if guard in [run,walk]:
+						y+=1
+					elif guard == 'hide':
+						print('The guard has found you!')
+						lose()
+					else:
+						print ('The value', guard , 'is not recognized')
+				else:
+					print('You have not guessed my number correctly. LEAVE YOU DISGRACE!)
+					y+=1
+			elif rope == 'exit':
+					y+=1
+			else:
+				print ('The value', rope , 'is not recognized')
+		elif speak == 'leave':
+			y+=1
+		else:
+			print ('The value', speak , 'is not recognized')
+	if y=1:
+		print('You have now exited cellA and entered hallA')
+		hallA()
+			
 		
 
 def hallwayA():
 	print("This is a hallway, illuminated with dim lights. This is a pretty long hallway, with a lot of cobwebs. Suddenly a spider drops down in front of your legs.")
-	spiderAction = ("What do you want to do?\n")
-    
-def cellC():
-    global enteredRooms
-    print('You entered Room 3')
-    if 'room3' in enteredRooms:
-        print('This room looks vaguely familiar')
-    if 'room3' not in enteredRooms:
-            enteredRooms += ['room3']    
+	spiderAction = ("What do you want to do?\n")  
 
 def yourCell():
     global playerItems
@@ -273,7 +306,7 @@ def startGame():
     raw_input('Press enter to start the game. ')
     yourCell()
     
-def endGame():    '''find a way to actually implement this into every room'''
+def lose():    '''find a way to actually implement this into every room'''
 	print('You have ended the game.')
     
     

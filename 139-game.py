@@ -10,12 +10,28 @@ flag = True
 flag2 = True
 
 def cellB():
-    global enteredRooms
-    print('You entered Room 2')
-    if 'room2' in enteredRooms:
-        print('This room looks vaguely familiar')
-    if 'room2' not in enteredRooms:
-        enteredRooms += ['room2']
+    flag2 = True
+    print("\nThis cell has one other prisoner in it.")
+    flag = True
+    while flag == True:
+        if 'gold'in playerItems:
+            print('Here, have the chloroform')
+        else:    
+            print("Ahoy mate, what are you doing here?")
+            choice = input("You want the chloroform? \n")
+            if choice == 'yes':
+                print("You need to get me gold first!")
+            else: 
+                print("Too bad, so sad")
+    
+        playerChoice = input("What do you want to do next? \n")
+        while flag2 == True:
+            if playerChoice in ['exit']:
+                hallwayA()
+                flag2 = False
+            else:
+                print("Invalid Command try again.")
+                playerChoice = input("What do you want to do next? \n")
 	
 def cellC():
 	x=0

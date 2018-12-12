@@ -16,6 +16,7 @@ def cellB():
         print('This room looks vaguely familiar')
     if 'room2' not in enteredRooms:
         enteredRooms += ['room2']
+	
 def cellC():
 	x=0
     global enteredRooms
@@ -118,70 +119,103 @@ def yourCell():
         else:
             userAction = raw_input('Not a valid action.  Try Again! ')
     if 'yourCell' in openedDoors:
-        hallA()   
+        hallA()  
 	
 def hallB():
-    global playerItems
-    global enteredRooms
-    global openedDoors
-    global enteredRooms += [hallB]
+    	global playerItems
+    	global enteredRooms
+    	global openedDoors
+    	exitRoom = False
+    	enteredRooms += ['hallB']
     
-    print('The hall is dark and musty, lit by a single torch on the stone walls.)
-    print('There are 3 doors, one on the right (door 1), one on the left (door 2), and one directly in behind you (door 3).')
-    print('Their is a door directly in front of you that is guarded by a tall, dark man in leather armor.')
-    action = raw_input('Would you like to confront the guard? (yes or no)')
+    	print('The hall is dark and musty, lit by a single torch on the stone walls.')
+    	print('There are 3 doors, one on the east (door 1), one on the west (door 2), and one directly south of you (door 3).')
+    	print('Their is a door directly north of you that is guarded by a tall, dark man in leather armor.')
     
-    if action == 'yes':
-    	print('As you approach the guard, he turns to face you.')
-        print('He lifts his hood and stands up straight to confront you.')
-	choice = raw_input('What are you doing out of your cell?(looking to barter or looking to fight)')
-	
-	while choice == 'looking to barter':
-		print('The guard takes a step towards you.')
-		barter = raw_input('I'm listening.  Go on, what do you have for me.(str(user_items))')
-		if barter == 'gold' or barter == 'pillow':
-			print('You think I want some old' + barter + '?')
-			response = ('The guard reaches for his sword. You must now fight or surrender.')
+    	while exitRoom == False:
+        
+        	action = input('Would you like to confront the guard? (yes or no)')
+    
+        	if action == 'yes':
+            	print('As you approach the guard, he turns to face you.')
+            	print('He lifts his hood and stands up straight to confront you.')
+            	choice = input('What are you doing out of your cell?(looking to barter or looking to fight)')
+            
+            	while choice != 'looking to barter' and choice != 'looking to fight':
+                	choice = input('Invalid response (looking to barter or looking to fight):')
+        
+            	while choice == 'looking to barter':
+                	print('The guard takes a step towards you.')
+                	barter = input('I am listening. Go on, what do you have for me?:')
+         
+                	while barter not in playerItems:
+                    	print('You can not barter something you do not have.')
+                    	barter = input('Invalid response (looking to barter or looking to fight):')
+                
+                	if barter == 'gold' and 'gold' in playerItems or barter == 'pillow' and 'gold' in playerItems:
+                    		print('You think I want some old ' + barter + '?')
+                    		response = input('The guard reaches for his sword. You must now fight or surrender.') 
+                    		if response == 'surrender':
+                        		print('You surrender yourself to the guard.')
+                        		print('He yells for other guards. You have failed.')
+                        		lose()	
+                    		if response == 'fight':
+                        		choice = 'looking to fight'
+                
+                	elif barter == 'spider' and 'spider' in playerItems:
+                    		playerItems -= [barter]
+                    		print('The guards eyes water at the look of the spider.')
+                    		print('You notice the guards sunken eyes and hollow cheeks.')
+                    		print('He looks like he has not eaten for days.')
+                    		print('You take one look at your spider friend. He gives you a little nod as if to say "It will be okay".')
+                    		print('You hand your little buddy over and turn away as you hear the deafening crunch of the ultimate sacrifice.')
+                    		win()
+            
+            	while choice == 'looking to fight':
+                	print('Your hands sweat as you think of what you should use to defend yourself.')
+                	weapon = input('What do you use to defend yourself?')
+                	while weapon != 'chloroform' and weapon != 'bar' or weapon not in playerItems:
+                    	weapon = input('Invalid choice, try a different item: ')
+                
+                	if weapon == 'chloroform' and 'chloroform' in playerItems and 'rope' in playerItems:
+                    		print('You knock the guard out with your rag and leave him tied up against the wall.')
+		    		playerItems =- 'chloroform'
+		    		playerItems -='rope'
+                    		win()
+            
+                	elif weapon == 'bar' and 'rope' not in playerItems:
+                    		print('You successfully strike the guard and drop the bar to the ground with a resounding clang.')
+                    		print('Your hand is turning the door handle when your legs are knocked out from under you.')
+                    		print('Your head is spinning as you look up and see the guard kneeling over you, calling out for help.')
+                    		print('The other guards come quickly to his aid.')
+                    		lose()
+                	elif weapon == 'bar' and 'rope' in playerItems:
+                    		print('You successfully strike the guard and drop the bar to the ground with a resounding clang.')
+                   		print('You tie the guard up and leave him leaning against the stone wall')
+		    		playerItems -= 'bar'
+		    		playerItems -= 'rope'
+                    		win()
+                
+        elif action == 'no':
+		move = input('Which door would you like to enter?(door 1, door 2, or door 3): ')
+            	if move == 'door 1':
+                	cellD()
+                	exitRoom = True
+           	elif move == 'door 2':
+                	cellC()
+                	exitRoom = True
+            	elif move == 'door 3':
+                	hallA()
+                	exitRoom = True
+		elif action == 'quit':
+			quit()
 			
-			if response == 'surrender':
-				print('You surrender yourself to the guard.')
-				print('He yells for other guards. You have failed.')	
-			if response == 'fight':
-				choice = 'looking to fight'
-				
-		if barter == 'spider' or barter == 'bar':
-			print('You have made a very intriguing case.')
-			print('I challenge you to a duel. If you win, I will let you go free.')
-			print('If I win, I call the other guards.')
-			choice = 'looking to fight'
-			
-	while choice == 'looking to fight':
-		print('Your hands sweat as you think of what you should use to defend yourself.')
-		weapon = raw_input('What do you use to defend yourself?: )
-		if weapon == 'cloroform' and 'cloroform' in userItems and 'rope' in userItems:
-			print('You knock the guard out with your rag and leave him tied up against the wall.')
-			win()
-		elif weapon == 'bar' and 'rope' not in userItems:
-			print('You successfully strike the guard and drop the bar to the ground with a resounding clang.')
-			print('Your hand is turning the door handle when your legs are knocked out from under you.')
-			print('Your head is spinning as you look up and see the guard kneeling over you, calling out for help.')
-			print('The other guards come quickly to his aid.')
-			lose()
-		elif weapon == 'bar' and 'rope' in userItems:
-			print('You successfully strike the guard and drop the bar to the ground with a resounding clang.')
-			print('You tie the guard up and leave him leaning against the stone wall')
-			win()
-			
-	if action == 'no':
-		move = raw_input('Which door would you like to enter?: ')
-		if move == 'door 1':
-			cellD()
-		elif move == 'door 2':
-			cellC()
-		else move == 'door 3':
-			hallA()
-			
-       
+		elif action == 'quit':
+		quit()
+        
+        elif action not in ['yes', 'no', 'quit']:
+            	print('Invalid option, please try again.')
+        	
 def cellD():
 	global playerItems
 	global enteredRooms
@@ -358,7 +392,13 @@ def startGame():
     raw_input('Press enter to start the game. ')
     yourCell()
     
-def lose():    '''find a way to actually implement this into every room'''
-	print('You have ended the game.')
+def lose():   
+	print('You have lost the game.')
+
+def win():
+	print('You have won the game!')
+	
+def quit():
+	print('You have quit the game!')
     
     

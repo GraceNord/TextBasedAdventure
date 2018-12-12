@@ -110,8 +110,49 @@ def cellA():
 		
 
 def hallwayA():
-	print("This is a hallway, illuminated with dim lights. This is a pretty long hallway, with a lot of cobwebs. Suddenly a spider drops down in front of your legs.")
-	spiderAction = ("What do you want to do?\n")  
+    enteredRooms = []
+    thingsDoneInHallA = []
+    flag = True
+    flag3 = True 
+
+    while flag == True:
+        if'room' not in enteredRooms:
+            print("This is a hallway, illuminated with dim lights. This is a pretty long hallway, with a lot of cobwebs. There is Cell A to your right and Cell B to your left. Suddenly a spider drops down in front of your legs.")
+        
+        if'room' in enteredRooms:
+            print("This hallway looks familiar")
+           
+        spiderAction = input("What do you want to do?\n")
+        while flag3 == True:
+            if spiderAction in ["kill spider", "step on spider"]:
+                print("The spider has been killed")
+                thingsDoneInHallA += ["The spider has been killed"]
+                spiderAction = input("What do you want to do now?\n")
+            elif "The spider has been killed" in thingsDoneInHallA:
+                print("You have killed a potential friend here. You'll be haunted by that spider for the rest of your short life.")
+                spiderAction = input("What do you want to do?\n")
+            elif spiderAction in ["enter cell b", "go to cell b"]:
+                enteredRooms += ["room"]
+                #print(enteredRooms)
+                cellB()
+                flag3 = False
+            elif spiderAction == "befriend spider":
+                print("The spider, named Spid, which will follow you around now, like a great companion!")
+                thingsDoneInHallA += ["The spider is your friend"]
+                spiderAction = input("What do you want to do now?\n")
+            elif spiderAction in ["go to hallway b", "next hallway"]:
+                hallwayB()
+                flag3 = False 
+            elif spiderAction == 'enter cell a':
+                cellA()
+                flag3 = False 
+            elif spiderAction == "exit":
+                print("You can't exit the hallway, you are still in this dim hallway and you can go to cell A, cell B or hallway B ")
+                spiderAction = input("What do you want to do now?\n")
+            else:
+                print("This command is not valid")
+                spiderAction = input("Try again: What do you want to do now?\n")
+        flag = False 
 
 def yourCell():
 	#this allows us to use global variables, so that the events in each cell are not independent of one another

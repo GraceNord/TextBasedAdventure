@@ -1,10 +1,13 @@
 from __future__ import print_function
 import random
 
+thingsDoneInHallwayA = []
 playerItems = []
 enteredRooms = []
 openedDoors = []
 likability = False
+flag = True
+flag2 = True
 
 def cellB():
     global enteredRooms

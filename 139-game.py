@@ -14,7 +14,7 @@ def cellB():
     print("\nThis cell has one other prisoner in it.")
     flag = True
     while flag == True:
-        if 'gold'in playerItems:
+        if 'gold'in playerItems: 
             print('Here, have the chloroform')
         else:    
             print("Ahoy mate, what are you doing here?")
@@ -32,20 +32,21 @@ def cellB():
             else:
                 print("Invalid Command try again.")
                 playerChoice = input("What do you want to do next? \n")
+                
 	
 def cellC():
-	x=0
+    x=0
     global enteredRooms
     print('You entered cellC')
     if 'cellC' in enteredRooms:
         print('This cell looks vaguely familiar')
     if 'cellC' not in enteredRooms:
-            enteredRooms += ['cellC']
+        enteredRooms += ['cellC']
 	survey = input('What do you want to do?:')
 	while x==0:
 		if survey in ['survey','search','look']:
 			search = input('You found a loose brick. What do you want to do?:')
-			if search in ['remove','break'] an if 'bar' in playerItems:
+			if search in ['remove','break'] and 'bar' in playerItems:
 				found = input('You found a golden tooth. Do you want to leave the cell or hide?:')
 				playerItems += ['gold']
 				if found == 'leave':
@@ -59,22 +60,22 @@ def cellC():
 				x+=1
 			else:
 				print ('The value', search , 'is not recognized')
-		elif survey in ['exit','leave']:
-			x+=1
+		if survey in ['exit','leave']:
+		     x+=1
 		else:
-			print ('The value', survey , 'is not recognized')
-	if x=1:
-		print('You have now exited cellC and entered hallB')
-		hallB()
+		     print ('The value', survey , 'is not recognized')
+	        if x==1:
+	           print('You have now exited cellC and entered hallB')
+	           hallB()
 		
 def cellA():
-	y=0
+    y=0
     global enteredRooms
     print('You entered cellA')
     if 'cellA' in enteredRooms:
         print('This cell looks vaguely familiar')
     if 'cellA' not in enteredRooms:
-            enteredRooms += ['cellA']  
+        enteredRooms += ['cellA']  
 	while y==0:
 		speak = input('A prisoner in cellA approaches you. Do you want to speak with him or leave?:')
 		if speak == 'speak':
@@ -82,7 +83,7 @@ def cellA():
 			if rope == 'guess':
 				guess = input('What is your guess?:')
 				if guess in ['z','Z']:
-					print('You guessed my number. Ha Ha Ha! Here is your rope!)
+					print('You guessed my number. Ha Ha Ha! Here is your rope!')
 					playerItems += [rope]
 					guard = input('A guard is nearby. Do you want to run, hide, or walk?:')
 					if guard in [run,walk]:
@@ -93,7 +94,7 @@ def cellA():
 					else:
 						print ('The value', guard , 'is not recognized')
 				else:
-					print('You have not guessed my number correctly. LEAVE YOU DISGRACE!)
+					print('You have not guessed my number correctly. LEAVE YOU DISGRACE!')
 					y+=1
 			elif rope == 'exit':
 					y+=1
@@ -103,7 +104,7 @@ def cellA():
 			y+=1
 		else:
 			print ('The value', speak , 'is not recognized')
-	if y=1:
+	if y==1:
 		print('You have now exited cellA and entered hallA')
 		hallA()
 			
@@ -209,9 +210,9 @@ def hallB():
     
     		#when they want to confront
         	if action == 'yes':
-            	print('As you approach the guard, he turns to face you.')
-            	print('He lifts his hood and stands up straight to confront you.')
-            	choice = input('What are you doing out of your cell?(looking to barter or looking to fight)')
+            	   print('As you approach the guard, he turns to face you.')
+            	   print('He lifts his hood and stands up straight to confront you.')
+            	   choice = input('What are you doing out of your cell?(looking to barter or looking to fight)')
             
 	    	#makes sure the use chooses a valid response
             	while choice != 'looking to barter' and choice != 'looking to fight':
@@ -251,7 +252,7 @@ def hallB():
                 	weapon = input('What do you use to defend yourself?')
 			#makes sure that we use a weapon I have coded for
                 	while weapon != 'chloroform' and weapon != 'bar' or weapon not in playerItems:
-                    	weapon = input('Invalid choice, try a different item: ')
+                            weapon = input('Invalid choice, try a different item: ')
                 
 			#basic if statement of the conditions to win
                 	if weapon == 'chloroform' and 'chloroform' in playerItems and 'rope' in playerItems:
@@ -273,7 +274,7 @@ def hallB():
 		    		playerItems -= 'rope'
                     		win()
         #if you chose not to confront the guard, you can just go to one of the other rooms        
-        elif action == 'no':
+        if action == 'no':
 		move = input('Which door would you like to enter?(door 1, door 2, or door 3): ')
             	if move == 'door 1':
                 	cellD()
@@ -288,7 +289,7 @@ def hallB():
 			quit()
 		#gives the option to quit the game instead of continue playing	
 		elif action == 'quit':
-		quit()
+		  quit()
         #making usre we have valid inputs
         elif action not in ['yes', 'no', 'quit']:
             	print('Invalid option, please try again.')
@@ -307,11 +308,11 @@ def cellD():
 		print("One to your left, the other to your right.")
 		print("The one to your right barks, 'Hey what are you doing in here?'")
 		print("How do you respond.")
-		print(You are hiding from the guard or you are trying to escape the prison?")
+		print("You are hiding from the guard or you are trying to escape the prison?")
 		response = raw_input("Hide or Escape: ")
 		while response != "Hide" and response != "Escape":
-		response = raw_input("Invalid Option, Hide or Escape: ")
-		if response == "Hide:
+		  response = raw_input("Invalid Option, Hide or Escape: ")
+		if response == "Hide":
 			likability = True
 			print('The one to your left says, "We can sympathize with that. That guard has been a pain to everyone around here."')
 		else:
@@ -321,12 +322,12 @@ def cellD():
 			print('Will you try to free these prisoners?')
 			response = raw_input('Yes or No: ')
 			while response != "Yes" and response != "No":
-			response = raw_input("Invalid Option, Yes or No: ")
+			 response = raw_input("Invalid Option, Yes or No: ")
 			if response == "Yes":
 				likability = True
 				print('The one on your right shouts, "Alright, nice. Hey, any information you need, we both got it."')
 			else:
-				print('The one on your right menacingly says, "Wrong answer bub. You'll have to make it up to us now."')
+				print("The one on your right menacingly says, Wrong answer bub. You'll have to make it up to us now.")
 				print('The one on your left says, "Why not leave that little pillow case we see you dragging around."')
 				playerItems.remove("pillowcase")
 				cellItems += ["pillowcase"]
@@ -335,8 +336,8 @@ def cellD():
 
 	else:
 		print("This is the cell with the two mysterious figures in it. It hasn't changed much since you left.")
-		if likability == True
-			print('The prisoner on your right says, "Hey it's good to see you again."')
+		if likability == True:
+			print("The prisoner on your right says, Hey it's good to see you again.")
 			print('The prisoner on your left says, "What do you need?"')
 		else:
 			print('The prisoner on your right says, "You got a lotta nerve comming back here."')
@@ -347,7 +348,7 @@ def cellD():
 			while len(playerItems) > 2:
 				print("You currently cannot hold more than two items. Which one will you drop")
 				for item in playerItems:
-				print(item)
+				    print(item)
 				item = raw_input()
 				while not(item in playerItems):
 					item = raw_input("Invalid object, try another: ")
@@ -419,10 +420,10 @@ def cellD():
 				item = raw_input()
 				if item != 'pillow':
 					print("The prisoner on your left looks at you funny.")
-					print('He says, "That's not something we need."')
+					print("He says, That's not something we need.")
 				else:
 					playerItems.remove(item)
-					print('The prisoner on your right says, "Really, you'd give that to us?"')
+					print("The prisoner on your right says, Really, you'd give that to us?")
 					print('The prisoner on your left says, "Now we can both have something to sleep on.')
 					print('Our deepest gratitude."')
 					likability = True
@@ -440,22 +441,22 @@ def cellD():
 				if question == 'accross':
 					print('The one on your right says, "There used to be a guy in that cell.')
 					print('He just disappeared one day though. Might of been something to do')
-					print('with his obsession with shiny things. Wouldn't be shocked if he left')
+					print("with his obsession with shiny things. Wouldn't be shocked if he left")
 					print('something shiny in his cell."')
 				elif question == 'diagonal':
 					print('The one on your left says, "Now that guy there is a tough one.')
-					print('He's super possessive of his things. It'd take something very valuable')
+					print("He's super possessive of his things. It'd take something very valuable")
 					print('to make him give something up."')
 				elif question == 'next to':
 					print('The one on your right says, "That guy is looney.')
-					print('He's a real pain, and he won't stop saying ' + str(Z) + ' in his sleep."')
+					print("He's a real pain, and he won't stop saying " + str(z) + " in his sleep.")
 				elif question == 'guard':
 					print('The one on your left says, "The guard standing out there is a toughie.')
 					print('I would challeng him unless I had a good game plan. Although, I have heard')
 					print('he takes bribes."')
 				else:
 					print('The one on your right says, "Us? We both got caught in the crime together.')
-					print('You don't need to know more than that."')
+					print("You don't need to know more than that.")
 		elif action in ['leave', 'exit']:
 			exitRoom = True
 		else:
@@ -477,5 +478,3 @@ def win():
 	
 def quit():
 	print('You have quit the game!')
-    
-    
